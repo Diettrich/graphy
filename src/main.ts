@@ -1,4 +1,5 @@
 import Canvas from "./canvas/index.js";
+import Drawer from "./drawer/index.js";
 
 document.querySelector<HTMLDivElement>(
     "#app"
@@ -6,8 +7,12 @@ document.querySelector<HTMLDivElement>(
 
 const canvas = document.querySelector<HTMLCanvasElement>("#canvas")!;
 
-const CanvasInstance = new Canvas({
+const canvasInstance = new Canvas({
     canvas,
-    width: 666,
-    height: 500,
+    width: 800,
+    height: 600,
 });
+
+const drawerInstance = new Drawer(canvasInstance);
+
+drawerInstance.drawPixel(10, 10, "blue");

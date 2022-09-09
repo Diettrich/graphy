@@ -4,7 +4,7 @@ interface IConstructorCanvas {
     height: number;
 }
 
-interface ICanvas {
+export interface ICanvas {
     canvas: HTMLCanvasElement;
     context: CanvasRenderingContext2D;
     width: number;
@@ -24,10 +24,6 @@ class Canvas implements ICanvas {
         this.height = height;
         this.canvas.width = width;
         this.canvas.height = height;
-    }
-
-    clear(): void {
-        this.context.clearRect(0, 0, this.width, this.height);
     }
 }
 
