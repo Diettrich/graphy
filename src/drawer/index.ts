@@ -10,6 +10,13 @@ export interface IDrawer {
 
     clear(): void;
     drawPixel(x: number, y: number, color: number[]): void;
+    drawRect(
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        color: number[]
+    ): void;
 }
 
 class Drawer implements IDrawer {
@@ -37,7 +44,8 @@ class Drawer implements IDrawer {
     }
 
     private putImageData() {
-        this.context.putImageData(this.imageManipulator.imageData, 0, 0);
+        const imageData = this.imageManipulator.getImgData();
+        this.context.putImageData(imageData, 0, 0);
     }
 
     clear(): void {
@@ -46,6 +54,17 @@ class Drawer implements IDrawer {
 
     drawPixel(x: number, y: number, color: number[]): void {
         this.imageManipulator.setPixel(x, y, color);
+        this.putImageData();
+    }
+
+    drawRect(
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        color: number[]
+    ): void {
+        this.imageManipulator.drawRect(x, y, width, height, color);
         this.putImageData();
     }
 }

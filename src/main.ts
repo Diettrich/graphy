@@ -1,6 +1,7 @@
 import Canvas, { ICanvas } from "./canvas";
 import Drawer, { IDrawer } from "./drawer";
-import Color from "./utils/Color.js";
+
+import testAndDemo from "./testAndDemo";
 
 document.querySelector<HTMLDivElement>(
     "#app"
@@ -17,4 +18,4 @@ const canvasInstance: ICanvas = new Canvas({
 
 const drawerInstance: IDrawer = new Drawer(canvasInstance);
 
-drawerInstance.drawPixel(10, 10, Color.fromHex("#ff0000"));
+testAndDemo(drawerInstance);
