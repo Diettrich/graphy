@@ -1,18 +1,20 @@
-import Canvas from "./canvas/index.js";
-import Drawer from "./drawer/index.js";
+import Canvas, { ICanvas } from "./canvas";
+import Drawer, { IDrawer } from "./drawer";
+import Color from "./utils/Color.js";
 
 document.querySelector<HTMLDivElement>(
     "#app"
 )!.innerHTML = `<canvas id="canvas"></canvas>`;
 
-const canvas = document.querySelector<HTMLCanvasElement>("#canvas")!;
+const canvas: HTMLCanvasElement =
+    document.querySelector<HTMLCanvasElement>("#canvas")!;
 
-const canvasInstance = new Canvas({
+const canvasInstance: ICanvas = new Canvas({
     canvas,
     width: 800,
     height: 600,
 });
 
-const drawerInstance = new Drawer(canvasInstance);
+const drawerInstance: IDrawer = new Drawer(canvasInstance);
 
-drawerInstance.drawPixel(10, 10, "blue");
+drawerInstance.drawPixel(10, 10, Color.fromHex("#ff0000"));

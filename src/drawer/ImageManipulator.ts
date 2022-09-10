@@ -1,5 +1,5 @@
 // TODO use better architecture
-export default class ImgData {
+export default class ImageManipulator {
     imageData: ImageData;
     data: Uint8ClampedArray;
     width: number;
@@ -27,7 +27,6 @@ export default class ImgData {
     }
 
     setPixel(x: number, y: number, color: number[]): void {
-        console.log("setPixel", x, y, color);
         const index = this.getIndex(x, y);
         this.data[index] = color[0];
         this.data[index + 1] = color[1];
