@@ -1,5 +1,6 @@
 import Canvas, { ICanvas } from "./canvas";
 import Drawer, { IDrawer } from "./drawer";
+import Graph from "./graph";
 
 import testAndDemo from "./testAndDemo";
 
@@ -18,4 +19,6 @@ const canvasInstance: ICanvas = new Canvas({
 
 const drawerInstance: IDrawer = new Drawer(canvasInstance);
 
-testAndDemo(drawerInstance);
+const graphInstance: Graph = new Graph(drawerInstance);
+
+testAndDemo(graphInstance);

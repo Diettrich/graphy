@@ -1,4 +1,31 @@
 // TODO use better architecture
+
+export interface IImageManipulator {
+    imageData: ImageData;
+    data: Uint8ClampedArray;
+    width: number;
+    height: number;
+
+    getImgData(): ImageData;
+    getPixel(x: number, y: number): number[];
+    setPixel(x: number, y: number, color: number[]): void;
+    setTransparent(): void;
+    drawRect(
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        color: number[]
+    ): void;
+    drawTransparentRect(
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        color: number[]
+    ): void;
+}
+
 export default class ImageManipulator {
     imageData: ImageData;
     data: Uint8ClampedArray;
@@ -56,6 +83,31 @@ export default class ImageManipulator {
         for (let i = x; i < x + width; i++) {
             for (let j = y; j < y + height; j++) {
                 this.setPixel(i, j, color);
+            }
+        }
+    }
+
+    drawTransparentRect(
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        color: number[]
+    ): void {
+        for (let i = x; i < x + width; i++) {
+            for (let j = y; j < y + height; j++) {
+                const pixel = this.getPixel(i, j);
+                const newPixel = [
+                    (pixel[0] * (255 - color[3])) / 255 +
+                        (color[0] * color[3]) / 255,
+                    (pixel[1] * (255 - color[3])) / 255 +
+                        (color[1] * color[3]) / 255,
+                    (pixel[2] * (255 - color[3])) / 255 +
+                        (color[2] * color[3]) / 255,
+                    (pixel[3] * (255 - color[3])) / 255 +
+                        (color[3] * color[3]) / 255,
+                ];
+                this.setPixel(i, j, newPixel);
             }
         }
     }
